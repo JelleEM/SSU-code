@@ -1,0 +1,6 @@
+app
+
+class sensor:
+  phMin
+  phMax
+  
