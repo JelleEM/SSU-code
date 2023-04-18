@@ -2,7 +2,7 @@ app
 
 class sensor:
   phMin = 3
-  phMax =9
+  phMax = 9
   lightMin =
   lightMax =
   waterMin =
