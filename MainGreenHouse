@@ -1,4 +1,4 @@
-app
+
 
 class sensor:
   phMin =
@@ -15,3 +15,5 @@ class sensor:
   ventiTimer = timerValue
   
 class ph (phMin, phMax, phValue):
+  if phValue < phMin:
+    øg ph-værdien
