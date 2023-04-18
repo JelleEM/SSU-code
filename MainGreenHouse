@@ -9,6 +9,9 @@ class sensor:
   waterMax =
   waterAmount = 
   ventiTimer = 
-  phValue
+  phValue = sensorValuePh
+  lightValue = sensorValueLight
+  waterValue = sensorValueWater
+  ventiTimer = timerValue
   
-class ph (phMin, phMax, 
+class ph (phMin, phMax, phValue):
