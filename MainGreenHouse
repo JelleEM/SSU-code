@@ -1,6 +1,14 @@
 app
 
 class sensor:
-  phMin
-  phMax
+  phMin =
+  phMax =
+  lightMin =
+  lightMax =
+  waterMin =
+  waterMax =
+  waterAmount = 
+  ventiTimer = 
+  phValue
   
+class ph (phMin, phMax, 
