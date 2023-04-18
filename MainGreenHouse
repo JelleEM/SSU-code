@@ -11,4 +11,11 @@ class sensor:
   ventiTimer = 
   phValue
   
-class ph (phMin, phMax, 
+class ph (phMin, phMax, phValue):
+  if phValue < phMin:
+    øg ph-værdien
+
+  if phValue > phMax: 
+    sænk ph-værdien
+
+    
