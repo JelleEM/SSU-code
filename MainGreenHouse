@@ -5,9 +5,12 @@ start_layout=[[sg.Text('Dine Planter',key='t',background_color='dark sea green')
         [sg.Button('Plante 2', key='-but2-')],
         [sg.Button('Plante 3', key='-but3-')]]
         
-plante1_layout=[[sg.Text('Plante 1',key='t',background_color='dark sea green')]]
-plante2_layout=[[sg.Text('Plante 2',key='t',background_color='dark sea green')]]  
-plante3_layout=[[sg.Text('Plante 3',key='t',background_color='dark sea green')]]
+plante1_layout=[[sg.Text('Plante 1',key='t',background_color='dark sea green')],
+                [sg.Button('back', key='back')]]
+plante2_layout=[[sg.Text('Plante 2',key='t',background_color='dark sea green')],
+                [sg.Button('back', key='back')]]  
+plante3_layout=[[sg.Text('Plante 3',key='t',background_color='dark sea green')],
+                [sg.Button('back', key='back')]]
 window=sg.Window('',start_layout,size=(410,410),finalize=True) 
 app
 
@@ -35,6 +38,9 @@ while True:
        break
    if event=='-but1-':
        window=sg.Window('',plante1_layout,size=(410,410),finalize=True)
+       
+       if event== 'back':
+        window=sg.Window('', start_layout, size=(410,410),finalize=True)
    if event=='-but2-':
        window=sg.Window('',plante2_layout,size=(410,410),finalize=True)
    if event=='-but3-':
