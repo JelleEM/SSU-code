@@ -1,47 +1,64 @@
 import PySimpleGUI as sg
 
-start_layout=[[sg.Text('Dine Planter',key='t',background_color='dark sea green')],
-        [sg.Button('Plante 1', key='-but1-')], 
-        [sg.Button('Plante 2', key='-but2-')],
-        [sg.Button('Plante 3', key='-but3-')]]
-        
-plante1_layout=[[sg.Text('Plante 1',key='t',background_color='dark sea green')],
-                [sg.Button('back', key='back')]]
-plante2_layout=[[sg.Text('Plante 2',key='t',background_color='dark sea green')],
-                [sg.Button('back', key='back')]]  
-plante3_layout=[[sg.Text('Plante 3',key='t',background_color='dark sea green')],
-                [sg.Button('back', key='back')]]
-window=sg.Window('',start_layout,size=(410,410),finalize=True) 
-app
-
-class sensor:
+class sensor1:
   phMin = 3
   phMax = 9
-  lightMin =
-  lightMax =
-  waterMin =
-  waterMax =
-  waterAmount = 
-  ventiTimer = 
-  phValue
+  lightMin = 6
+  lightMax =10
+  waterMin = 500
+  waterMax =1000
+  waterAmount = 700
+  ventiTimer = 30
+  phValue = 10
+  lightValue=10
   
-class ph (phMin, phMax, phValue):
-  if phValue < phMin:
-    øg ph-værdien
+  def ph(self, phMin, phMax, phValue):
+      if sensor1.phValue > sensor1.phMax or sensor1.phValue<sensor1.phMin:
+          print('neutralizing soil')
+          window['pH'].update('Neutralizing soil')
 
-  if phValue > phMax: 
-    sænk ph-værdien
-    
+layout1=[[sg.Text('Dine Planter',key='t')]]
+        
+layout2=[[sg.Text('Plante 1',key='t',background_color='dark sea green')],
+                [sg.Image('download.png', subsample=1, k='-img-', expand_x=True)],
+                [sg.Text('Plant state')],
+                [sg.Text(f'Water: {sensor1.waterAmount}', k='Water')],
+                [sg.Text(f'Light: {sensor1.lightValue}', k='Light')],
+                [sg.Text(f'pH:{sensor1.phValue}', k='pH')],
+                [sg.Button('Edit Plant settings', k='settings1')]]
+layout3=[[sg.Text('Plante 2',key='t',background_color='dark sea green')],
+                [sg.Image('images.png', subsample=1, k='-img-', expand_x=True)],
+                [sg.Text('Plant state')],
+                [sg.Text(f'Water: {sensor1.waterAmount}')],
+                [sg.Text(f'pH:{sensor1.phValue}' )],
+                [sg.Button('Edit Plant settings', k='settings2')]]
+layout4=[[sg.Text('Plant Settings',key='t',background_color='dark sea green')],
+               [sg.Text('Juster pH:')],
+               [sg.InputText()],
+               [sg.Text('Adjust Light levels:')],
+               [sg.InputText()],
+               [sg.Text('Adjust Ventilation Timer')],
+               [sg.Text('Start time:'), sg.InputText()],
+               [sg.Text('End Time:'), sg.InputText()]]
+
+
+layout = [[sg.Column(layout1, key='-COL1-'), sg.Column(layout2, visible=False, key='-COL2-'), sg.Column(layout3, visible=False, key='-COL3-'), sg.Column(layout4, visible=True, key='-COL4-')],
+          [sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('4'), sg.Button('Exit')]]
+
+window = sg.Window('Swapping the contents of a window', layout)
+
+layout = 1  # The currently visible layout
 while True:
-   event, values =window.read()
-   if event == sg.WINDOW_CLOSED:
-       break
-   if event=='-but1-':
-       window=sg.Window('',plante1_layout,size=(410,410),finalize=True)
-       
-       if event== 'back':
-        window=sg.Window('', start_layout, size=(410,410),finalize=True)
-   if event=='-but2-':
-       window=sg.Window('',plante2_layout,size=(410,410),finalize=True)
-   if event=='-but3-':
-       window=sg.Window('',plante3_layout,size=(410,410),finalize=True)
+    event, values = window.read()
+    print(event, values)
+    if event in (None, 'Exit'):
+        break
+    if event == 'Cycle Layout':
+        window[f'-COL{layout}-'].update(visible=False)
+        layout = layout + 1 if layout < 4 else 1
+        window[f'-COL{layout}-'].update(visible=True)
+    elif event in '123':
+        window[f'-COL{layout}-'].update(visible=False)
+        layout = int(event)
+        window[f'-COL{layout}-'].update(visible=True)
+window.close()
